@@ -1,13 +1,48 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  color: #776D6D;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+  font-variant: normal; font-weight: 400; line-height: 26.4px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1, h2, h3, h4, h5, h6{
+  color: #776D6D;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
 }
+
+code {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+}
+
+input{ 
+  color: #776D6D;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+}
+
+.btn:active, .btn:focus { 
+  outline: none !important; 
+  border: none !important; 
+  box-shadow: none !important; 
+}
+
+
+/* **************** */
+/* COMMON BOOTSTRAP */ 
+/* **************** */
+
+.container{
+  /* .container, .container-sm, .container-md, .container-lg{ */
+  background: #FDFAFA; 
+  position: relative; /* needed for footer positioning*/
+  height: auto !important; /* real browsers */
+  min-height: 690px !important; /* real browsers */
+  max-width: 500px !important;
+}
+
+.form-control{ 
+  color: #776D6D !important;
+}
+
+ 

@@ -1,0 +1,39 @@
+
+nav{
+    flex-wrap: nowrap !important;
+    display: block !important;
+    width: 100% !important;
+}
+
+.navbar-brand{
+    float: left !important;
+}
+
+    .navbar-brand h2{ 
+        color: #EF8B98;
+    }
+ 
+.navbar-nav{
+    float: right !important;
+    color: rgba(0,0,0,.55);
+     
+}
+
+.dropdown{
+    font-size: 20px;
+}
+
+.dropdown-toggle::after{
+    display: none !important;
+}
+
+.dropdown-menu{
+    right: 0;
+}
+
+    .dropdown-item.active,.dropdown-item:hover{
+        color: white !important;
+        background-color: #EF8B98 !important;
+    }
+
+

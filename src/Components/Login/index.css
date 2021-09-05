@@ -1,0 +1,57 @@
+
+.logolbl{
+    color: #EF8B98;
+    margin-top: -40px;
+    text-align: center;
+}
+
+.loginbox{
+    height: 300px;
+    width: 70%;
+    margin: 50px auto;
+    padding: 30px;
+    background: #FFFFFF;
+    box-shadow: 0 0.2rem 0.4rem rgb(0 0 0 / 20%) !important;
+    -webkit-box-shadow: 0 0.2rem 0.4rem rgb(0 0 0 / 20%) !important;
+    -moz-box-shadow: 0 0.2rem 0.4rem rgb(0 0 0 / 20%) !important;
+}
+
+    .loginbox h4, .loginbox h6{
+        text-align: center;
+    }
+
+form{
+    margin-top: 30px;
+}
+
+    .form-control{
+        border: none;
+        background: #F6F5F5;
+    }
+
+    .form-control:focus{
+        background: #F6F5F5;
+        box-shadow:none;
+        border: none;
+    }
+
+    .loginsubmit{
+        width: 80%;
+        margin: 0 auto;
+        border: none;
+        border-radius: 25px;
+        background: #EF8B98;
+        display: block;
+    }
+
+    .loginsubmit:active, .loginsubmit:focus, .loginsubmit:hover{ 
+        background: #EF8B98;
+    }
+
+.registerlink{
+    cursor: pointer;
+    color: #EF8B98;
+}
+    .registerlink:focus, .registerlink:active, .registerlink:hover{
+        text-decoration: underline;
+    }
