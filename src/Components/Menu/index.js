@@ -1,9 +1,8 @@
 import React from "react";    
 import { useHistory } from "react-router-dom";
 
-import "./index.css";
-import { default as Settings } from '../../img/settings.svg';
-import { Navbar, Container, Nav, NavDropdown, MenuItem } from "react-bootstrap";  
+import "./index.css"; 
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";  
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 

@@ -16,7 +16,7 @@ code {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
 }
 
-input{ 
+input, label{ 
   color: #776D6D;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
 }
@@ -43,6 +43,11 @@ input{
 
 .form-control{ 
   color: #776D6D !important;
+}
+
+.modal{
+  color: #776D6D;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
 }
 
  

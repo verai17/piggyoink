@@ -1,0 +1,57 @@
+
+ 
+
+.walletoptionmdl .modal-dialog{
+    width: 400px;
+    margin: 0 auto !important;
+}
+
+.walletoptionmdl .modal-content{
+    margin-bottom: 30px;
+}
+
+.optionbtn{
+    width: 80%;
+    height: 50px;
+    margin: 0 auto;
+    border: none;
+    border-radius: 30px; 
+    display: block;
+}
+
+    .savingoptbtn{
+        background: #91BE91;
+    }
+
+    .savingoptbtn:active, .savingoptbtn:focus, .savingoptbtn:hover{ 
+        background: #7cb97c;
+    }
+
+    .expenseoptbtn{
+        background: #E06666;
+    }
+
+    .expenseoptbtn:active, .expenseoptbtn:focus, .expenseoptbtn:hover{ 
+        background: #bb5252;
+    }
+
+.walletoptionmdl form{
+    margin-top: 0px;
+}
+
+.mdlfooterbtn{
+    width: 40%;
+    height: 50px;
+    margin: 0 auto;
+    border: none;
+    border-radius: 30px; 
+    display: block;
+}
+
+    .mdlsubmitbtn{ 
+        background: #EF8B98;
+    }
+
+    .mdlsubmitbtn:active, .mdlsubmitbtn:focus, .mdlsubmitbtn:hover{ 
+        background: #d27985;
+    }

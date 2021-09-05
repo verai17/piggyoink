@@ -1,12 +1,12 @@
 import React from "react";    
 import { useHistory } from "react-router-dom";
-
-
+ 
 import Menu from "../Menu"
 import Wallet from "./Wallet"
+import Transaction from "./Transaction"
 
 import "./index.css";
-import { Container, Row, Form, Button } from "react-bootstrap";  
+import { Container, Row } from "react-bootstrap";  
  
 
 function Home() {
@@ -16,7 +16,7 @@ function Home() {
     const routeChange = (location) =>{ 
         history.push(location); 
     }
-
+ 
 
     return(
         <Container> 
@@ -25,10 +25,13 @@ function Home() {
             <Row><Menu /></Row> 
 
             {/* WELCOME LABEL */}
-            <Row><h4 className="welcomelbl">Welcome, <span>Vewa!</span> &#128075;</h4></Row> 
+            <Row><h4 className="welcomelbl">Welcome, <span>Taylor Swift!</span> &#128075;</h4></Row> 
 
             {/* WALLET */}
             <Row><Wallet /></Row>
+
+            {/* TRANSACTION */}
+            <Row><Transaction /></Row>
         </Container>
     );
     

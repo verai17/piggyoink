@@ -1,0 +1,39 @@
+
+.transactionbox{
+    margin-top: 20px;
+    min-height: 300px !important;
+}
+
+.txnlbl{
+    margin-bottom: 30px;
+    margin-left: 10px;
+}
+
+.txnitem{
+    cursor: pointer;
+    padding: 0px 40px 10px 40px; 
+}
+
+    .txnitem hr{
+        margin-top: 10px;
+    }
+    
+
+    .txnitem-deduct{
+        text-align: right;
+        color: #E06666;
+    }
+
+    .txnitem-add{
+        text-align: right;
+        color: #91BE91;
+    }
+
+ 
+    .txnitem-details label{
+        margin-left: 30px;
+    }
+
+    .txnitem-runbalamnt{
+        color: #EF8B98;
+    }
