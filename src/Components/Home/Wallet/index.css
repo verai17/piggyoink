@@ -1,0 +1,21 @@
+.walletbox{
+    cursor: pointer;
+    height: 150px;
+    width: 80%;
+    margin: 10px auto;
+    padding: 30px;
+    background: #FFFFFF;
+    box-shadow: 0 0.2rem 0.4rem rgb(0 0 0 / 20%) !important;
+    -webkit-box-shadow: 0 0.2rem 0.4rem rgb(0 0 0 / 20%) !important;
+    -moz-box-shadow: 0 0.2rem 0.4rem rgb(0 0 0 / 20%) !important;
+}
+
+.walletamount{
+    color: #EF8B98;
+    margin-top: 25px;
+    font-weight: bold;
+}
+
+.walletlbl{
+    margin-top: -10px;
+}
