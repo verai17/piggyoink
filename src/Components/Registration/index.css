@@ -1,0 +1,53 @@
+ 
+.registrationbox{ 
+    width: 85%;
+    margin: 30px auto;
+    padding: 30px;
+    background: #FFFFFF;
+    box-shadow: 0 0.2rem 0.4rem rgb(0 0 0 / 20%) !important;
+    -webkit-box-shadow: 0 0.2rem 0.4rem rgb(0 0 0 / 20%) !important;
+    -moz-box-shadow: 0 0.2rem 0.4rem rgb(0 0 0 / 20%) !important;
+}
+
+    .registrationbox h4, .loginbox h6{
+        text-align: center;
+    }
+
+form{
+    margin-top: 30px;
+}
+
+    .form-control{
+        border: none;
+        background: #F6F5F5;
+    }
+
+    .form-control:focus{
+        background: #F6F5F5;
+        box-shadow:none;
+        border: none;
+    }
+
+    .registersubmit{
+        width: 80%;
+        margin: 0 auto;
+        border: none;
+        border-radius: 25px;
+        background: #EF8B98;
+        display: block;
+    }
+
+    .registersubmit:active, .registersubmit:focus, .registersubmit:hover{ 
+        background: #EF8B98;
+    }
+
+.backhomelink{
+    cursor: pointer; 
+    color: #776D6D;
+    font-size: 12px;
+    margin-top: -10px;
+    text-align: center;
+}
+    .backhomelink:focus, .backhomelink:active, .backhomelink:hover{
+        text-decoration: underline;
+    }

@@ -20,9 +20,7 @@ function WalletOption(props) {
             show={props.showModal}
             onHide={props.handleClose}
             backdrop="static"
-            keyboard={false}
-            size="sm"
-            aria-labelledby="example-modal-sizes-title-sm"
+            keyboard={false} 
             centered
         >
             <Modal.Header closeButton>
