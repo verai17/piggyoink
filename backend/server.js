@@ -7,7 +7,8 @@ const app         = express();
 const cors        = require('cors');
 const bodyparser  = require("body-parser");  
 var server        = http.createServer(app);
-require('dotenv').config();
+require('dotenv').config(); 
+require('./src/config/sequelize');
 
 
 const context = require('./src/utils/context')
