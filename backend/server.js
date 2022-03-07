@@ -8,17 +8,15 @@ const cors        = require('cors');
 const bodyparser  = require("body-parser");  
 var server        = http.createServer(app);
 require('dotenv').config(); 
-require('./src/config/sequelize');
-
-
+require('./src/config/sequelize'); 
+ 
 const context = require('./src/utils/context')
-// const jwt     = require('./utils/passport-jwt')
+const jwt     = require('./src/utils/passport-jwt')
  
  
 app.use(cors());
 app.use(bodyparser.urlencoded({extended: true}));       //parse application/x-www-form-urlencoded
 app.use(bodyparser.json());                             //parse application/json
-// app.use(bodyparser.json({type: "application/json"}));   // Parse vnd.api+json as json
  
 // register controllers
 const controllers = requireAll({
@@ -30,7 +28,7 @@ _.each(controllers, (controller) => {
    
     _.each( 
       Object.values(controller), 
-      ({ path, method, resolver: _resolver, requireAuth }) => {
+      ({ path, method, resolver: _resolver, requireAuth, validator }) => {
     
         let methodAuth = true;   
         if(requireAuth === false) {  methodAuth = false; }
@@ -55,17 +53,17 @@ _.each(controllers, (controller) => {
             res.json({ error: err.message, details: err.details })
           }
         }
-        if (methodAuth) {
-          app[method](path, jwt.decode, resolver)
+
+        if (methodAuth) { 
+          app[method](`/api${path}`, jwt.decode, resolver)
         } else {  
-          app[method](path, resolver)
+          app[method](`/api${path}`, resolver)
         }
       }
     );
      
  });
-
- 
+  
 server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
   var addr = server.address();
   console.log("All ready! Server listening at", addr.address + ":" + addr.port);
