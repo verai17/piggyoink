@@ -1,17 +1,57 @@
 import React from "react";    
+import { useState } from 'react';
 import { useHistory } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 
 import "./index.css";
 import { Container, Row, Form, Button } from "react-bootstrap"; 
 import { default as PiggyBank } from '../../img/piggy-bank.svg';
+
+import { register } from '../../Services/account.service';
  
 
+const initialValue = {
+    firstname: 'vera',
+    lastname: 'piollo',
+    emailaddress: 'vera@yahoo.com',
+    password: 'password1',
+}
+
+  
 function Login() {
 
+    const [values, setValues] = useState(initialValue);
+    const [cookies, setCookie] = useCookies(['_token'],['_user']);
+ 
     let history = useHistory();
 
     const routeChange = (location) =>{ 
         history.push(location); 
+    }
+
+    const handleChange = (event) => {
+        setValues({
+          ...values,
+          [event.target.name]: event.target.value
+        })
+    }
+ 
+    const handleSave = async (event) => { 
+        let response = await register({
+            body: values
+        }); 
+        console.log(`response: ${JSON.stringify(response)}`);
+        if(response.error){
+            alert(`ERROR: ${response.error}`);
+        }
+        else{
+            setCookie('_token', response.data.token, { path: '/' });
+            setCookie('_user', response.data.user, { path: '/' });
+
+            //goto next page
+            routeChange("/home")
+        }
+ 
     }
 
 
@@ -28,23 +68,52 @@ function Login() {
                     <h4>Create an Account</h4>
                     <Form>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Control type="email" placeholder="First Name" />
+                        <Form.Control 
+                            type="text" 
+                            name="firstname" 
+                            placeholder="First Name" 
+                            value={values.firstname}
+                            onChange={handleChange}
+                        />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Control type="email" placeholder="Last Name" />
+                        <Form.Control 
+                            type="text"
+                            name="lastname" 
+                            placeholder="Last Name" 
+                            value={values.lastname}
+                            onChange={handleChange} 
+                        />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Control type="email" placeholder="Email Address" />
+                        <Form.Control 
+                            type="text" 
+                            name="emailaddress" 
+                            placeholder="Email Address"  
+                            value={values.emailaddress}
+                            onChange={handleChange} 
+                        />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control 
+                            type="password"
+                            name="password" 
+                            placeholder="Password"  
+                            value={values.password}
+                            onChange={handleChange} 
+                        />
                     </Form.Group> 
 
-                    <Button variant="primary" type="submit" className="registersubmit"
-                            onClick={(e) => {routeChange("/home")}}>
+                    {/* onClick={(e) => {routeChange("/home")}} */}
+                    <Button 
+                        variant="primary" 
+                        type="button" 
+                        className="registersubmit" 
+                        onClick={handleSave} 
+                    >
                         SUBMIT
                     </Button>
                     </Form>

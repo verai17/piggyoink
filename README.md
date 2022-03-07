@@ -52,5 +52,5 @@ http://localhost:3000/
 
 ## Todo
 
-1. Sequelize Integration to NodeJs
+1. Cookies checking on routes
 ```
