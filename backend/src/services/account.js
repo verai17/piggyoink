@@ -18,7 +18,7 @@ async function register(__, input, ctx) {
     });
  
     if (isEmailExist) {
-        throw new Error('User already exists with same email', 400);
+        throw new Error('User already exists with same email.', 400);
     }
  
     //encrypt password

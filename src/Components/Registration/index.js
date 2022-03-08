@@ -1,5 +1,5 @@
 import React from "react";    
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 
@@ -22,9 +22,14 @@ function Login() {
 
     const [values, setValues] = useState(initialValue);
     const [cookies, setCookie] = useCookies(['_token'],['_user']);
- 
     let history = useHistory();
 
+    useEffect(() => {
+        if (cookies) {
+            history.push('/home');
+        } 
+    }, [history, cookies]);
+  
     const routeChange = (location) =>{ 
         history.push(location); 
     }
@@ -40,7 +45,7 @@ function Login() {
         let response = await register({
             body: values
         }); 
-        console.log(`response: ${JSON.stringify(response)}`);
+
         if(response.error){
             alert(`ERROR: ${response.error}`);
         }
