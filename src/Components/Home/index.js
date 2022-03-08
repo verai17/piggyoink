@@ -13,9 +13,9 @@ import { Container, Row } from "react-bootstrap";
 
 function Home() {
 
-    const [cookies, setCookie] = useCookies(['token'],['user']);
+    const [cookies, setCookie] = useCookies(['user']); 
     let history = useHistory();
-
+ 
     useEffect(() => {
         if (cookies) {
             if (!cookies.token) {
@@ -36,7 +36,7 @@ function Home() {
             <Row><Menu /></Row> 
 
             {/* WELCOME LABEL */}
-            <Row><h4 className="welcomelbl">Welcome, <span>Taylor Swift!</span> &#128075;</h4></Row> 
+            <Row><h4 className="welcomelbl">Welcome, <span>{cookies.user.firstname.toUpperCase()} {cookies.user.lastname.toUpperCase()}</span> &#128075;</h4></Row> 
 
             {/* WALLET */}
             <Row><Wallet /></Row>

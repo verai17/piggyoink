@@ -33,7 +33,7 @@ module.exports = {
         defaultValue: '0'
       }, 
       lastaddedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE(3),
       },
       lastaddedamount: {
@@ -41,7 +41,7 @@ module.exports = {
         defaultValue: '0'
       },
       lastdeductedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE(3),
       },
       lastdeductedamount: {

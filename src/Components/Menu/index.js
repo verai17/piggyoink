@@ -11,7 +11,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 function Home() {
 
     const navDropdownTitle = (<FontAwesomeIcon icon={faBars} />); 
-    const [cookies, setCookie, removeCookie] = useCookies(['token'],['user']);
+    const [cookies, setCookie, removeCookie] = useCookies(['token'],['user'],['wallet']);
     let history = useHistory();
 
     const routeChange = (location) =>{ 
@@ -23,6 +23,7 @@ function Home() {
         if (window.confirm("Are you sure you want to logout?")) {
             removeCookie('token', { path: '/' });
             removeCookie('user', { path: '/' });
+            removeCookie('wallet', { path: '/' });
         }
    
     }

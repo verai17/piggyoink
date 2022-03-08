@@ -1,8 +1,8 @@
 const crypto = require('crypto'); 
 const jwt = require('../utils/passport-jwt');
-const validator = require('../validators/account.validator'); 
-const { users } = require('../models');
-  
+const validator = require('../validators/account.validator');  
+const { sequelize, users, user_wallet } = require('../models');
+ 
 async function register(__, input, ctx) { 
 
     const value = await validator.accountValidator("register",{
@@ -28,15 +28,31 @@ async function register(__, input, ctx) {
       .digest('hex'); 
 
     //save db
-    let newUser = await users.create({
-        firstname: value.firstname,
-        lastname: value.lastname,
-        emailaddress: value.emailaddress,
-        password: encryptedPassword,
+    const result = await sequelize.transaction(async (t) => {
+ 
+        let user = await users.create({
+            firstname: value.firstname,
+            lastname: value.lastname,
+            emailaddress: value.emailaddress,
+            password: encryptedPassword,
+        },{ transaction: t });
+    
+        let wallet = await user_wallet.create({
+            userid: newUser.id,
+            currentbalance: 0
+        }, { transaction: t });
+    
+        return {
+            user,
+            wallet
+        };
+    
     });
 
-    console.log(`newUser: ${JSON.stringify(newUser)}`);
+    console.log(`result: ${JSON.stringify(result)}`);
 
+    const { user: newUser, wallet: userWallet } = result;
+     
     //generate jwt
     let jwtsession = await jwt.encode({
         "firstname": newUser.firstname,
@@ -55,6 +71,7 @@ async function register(__, input, ctx) {
     return { 
         token: jwtsession,
         user: newUser, 
+        userWallet: userWallet
     }
 }
 
@@ -83,6 +100,15 @@ async function login(__, input, ctx) {
     if (loginUser.password !== encryptedPassword) {
         throw new Error('Invalid credentials.');
     }
+
+    //check if email address exist
+    const userWallet = await user_wallet.findOne({
+        where: { userid: loginUser.id },
+    });
+
+    if(!userWallet){
+        throw new Error('Server error.', 500);
+    }
  
     //generate jwt
     let jwtsession = await jwt.encode({
@@ -105,7 +131,22 @@ async function login(__, input, ctx) {
     }
 }
 
+async function get_wallet(__, input, ctx) { 
+ 
+    //check if email address exist
+    const userWallet = await user_wallet.findOne({
+        where: { userid: ctx.req.user.id },
+    });
+
+    console.log(`userWallet: ${JSON.stringify(userWallet)}`);
+  
+    return { 
+        message: "message", 
+    }
+}
+
 module.exports = {
     register,
-    login
+    login,
+    get_wallet
 }
