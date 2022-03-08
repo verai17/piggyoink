@@ -21,12 +21,14 @@ const initialValue = {
 function Login() {
 
     const [values, setValues] = useState(initialValue);
-    const [cookies, setCookie] = useCookies(['_token'],['_user']);
+    const [cookies, setCookie] = useCookies(['token'],['user']);
     let history = useHistory();
 
     useEffect(() => {
         if (cookies) {
-            history.push('/home');
+            if (cookies.token) {
+                history.push('/home');
+            } 
         } 
     }, [history, cookies]);
   
@@ -50,8 +52,8 @@ function Login() {
             alert(`ERROR: ${response.error}`);
         }
         else{
-            setCookie('_token', response.data.token, { path: '/' });
-            setCookie('_user', response.data.user, { path: '/' });
+            setCookie('token', response.data.token, { path: '/' });
+            setCookie('user', response.data.user, { path: '/' });
 
             //goto next page
             routeChange("/home")

@@ -1,5 +1,7 @@
-import React from "react";    
+import React from "react";   
+import { useEffect } from 'react'; 
 import { useHistory } from "react-router-dom";
+import { useCookies } from 'react-cookie';
  
 import Menu from "../Menu"
 import Wallet from "./Wallet"
@@ -11,7 +13,16 @@ import { Container, Row } from "react-bootstrap";
 
 function Home() {
 
+    const [cookies, setCookie] = useCookies(['token'],['user']);
     let history = useHistory();
+
+    useEffect(() => {
+        if (cookies) {
+            if (!cookies.token) {
+                history.push('/');
+            } 
+        } 
+    }, [history, cookies]);
 
     const routeChange = (location) =>{ 
         history.push(location); 

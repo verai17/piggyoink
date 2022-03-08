@@ -1,5 +1,7 @@
 import React from "react";    
+import { useEffect } from 'react';
 import { useHistory } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 
 import "./index.css";
 import { Container, Row, Form, Button } from "react-bootstrap"; 
@@ -7,8 +9,17 @@ import { default as PiggyBank } from '../../img/piggy-bank.svg';
  
 
 function Login() {
-
+ 
+    const [cookies, setCookie] = useCookies(['token'],['user']);
     let history = useHistory();
+
+    useEffect(() => {
+        if (cookies) {
+            if (cookies.token) {
+                history.push('/home');
+            } 
+        } 
+    }, [history, cookies]);
 
     const routeChange = (location) =>{ 
         history.push(location); 
