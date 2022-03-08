@@ -128,6 +128,7 @@ async function login(__, input, ctx) {
     return { 
         token: jwtsession,
         user: loginUser, 
+        wallet: userWallet 
     }
 }
 

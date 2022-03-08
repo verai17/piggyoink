@@ -24,6 +24,8 @@ function Home() {
             removeCookie('token', { path: '/' });
             removeCookie('user', { path: '/' });
             removeCookie('wallet', { path: '/' });
+
+            routeChange("/");
         }
    
     }

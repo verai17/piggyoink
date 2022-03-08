@@ -1,5 +1,6 @@
 import React, { useState }from "react";    
 import { useHistory } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 
 import WalletOption from "./Modal/option"
 import WalletSavings from "./Modal/savings"
@@ -15,6 +16,7 @@ function Wallet() {
     const [showOptionModal, setShowOptionModal] = useState(false);
     const [showSavingModal, setShowSavingModal] = useState(false);
     const [showExpenseModal, setShowExpenseModal] = useState(false);
+    const [cookies, setCookie] = useCookies(['wallet']);  
     let history = useHistory();
 
     const routeChange = (location) =>{ 
@@ -36,6 +38,8 @@ function Wallet() {
         setShowOptionModal(false)
         setShowExpenseModal(true);
     };
+
+    const wallet = (!cookies.wallet.currentbalance ? 0 : cookies.wallet.currentbalance )
  
 
     return(
@@ -46,7 +50,7 @@ function Wallet() {
                 <img alt="" src={PiggyWallet} style={{marginTop: "-10px"}}  width="100" height="100"/> 
                 </Col>
                 <Col xs={8}>
-                    <h2 className="walletamount">PHP 10,000.00</h2>
+                    <h2 className="walletamount">PHP {wallet.toFixed(2)}</h2>
                     <h6 className="walletlbl">Current Balance</h6>
                 </Col>
             </Row> 

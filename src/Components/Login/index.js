@@ -54,7 +54,7 @@ function Login() {
         else{
             setCookie('token', response.data.token, { path: '/' });
             setCookie('user', response.data.user, { path: '/' });
-            setCookie('wallet', response.data.user, { path: '/' });
+            setCookie('wallet', response.data.wallet, { path: '/' });
 
             //goto next page
             routeChange("/home")
