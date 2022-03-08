@@ -1,15 +1,22 @@
 import React from "react";    
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useCookies } from 'react-cookie';
+
+import { login } from '../../Services/account.service';
 
 import "./index.css";
 import { Container, Row, Form, Button } from "react-bootstrap"; 
 import { default as PiggyBank } from '../../img/piggy-bank.svg';
  
+const initialValue = { 
+    emailaddress: 'vera@yahoo.com',
+    password: 'password1',
+}
 
 function Login() {
  
+    const [values, setValues] = useState(initialValue); 
     const [cookies, setCookie] = useCookies(['token'],['user']);
     let history = useHistory();
 
@@ -23,6 +30,35 @@ function Login() {
 
     const routeChange = (location) =>{ 
         history.push(location); 
+    }
+
+    const handleChange = (event) => {
+        setValues({
+          ...values,
+          [event.target.name]: event.target.value
+        })
+    }
+
+    const handleLogin = async (event) => { 
+
+        console.log(`values: ${JSON.stringify(values)}`);
+        let response = await login({
+            body: values
+        }); 
+
+        console.log(`response: ${JSON.stringify(response)}`);
+
+        if(response.error){
+            alert(`ERROR: ${response.error}`);
+        }
+        else{
+            setCookie('token', response.data.token, { path: '/' });
+            setCookie('user', response.data.user, { path: '/' });
+
+            //goto next page
+            routeChange("/home")
+        }
+ 
     }
 
 
@@ -39,14 +75,30 @@ function Login() {
                     <h4>Sign into your Account</h4>
                     <Form>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Control type="email" placeholder="Email Address" />
+                        <Form.Control 
+                            type="email" 
+                            name="emailaddress" 
+                            placeholder="Email Address" 
+                            value={values.emailaddress}
+                            onChange={handleChange} 
+                            />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control 
+                            type="password" 
+                            name="password" 
+                            placeholder="Password"  
+                            value={values.password}
+                            onChange={handleChange} 
+                        />
                     </Form.Group> 
-                    <Button variant="primary" type="submit" className="loginsubmit"
-                            onClick={(e) => {routeChange("/home")}}>
+                    <Button 
+                        variant="primary" 
+                        type="button" 
+                        className="loginsubmit"
+                        onClick={handleLogin} 
+                    >
                         SUBMIT
                     </Button>
                     </Form>

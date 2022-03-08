@@ -24,6 +24,7 @@ async function getSchema(name){
 
     switch(name){
         case "register": schema = register(); break;
+        case "login": schema = login(); break;
         default: schema = null; break;
     }
  
@@ -44,6 +45,18 @@ function register(){
             .max(200) 
             .pattern(new RegExp('^[-. a-zA-Z0-9]+$'))
             .required(),
+        emailaddress: Joi
+            .string()
+            .email()
+            .required(),
+        password: Joi
+            .string()
+            .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
+    });  
+}
+
+function login(){
+    return Joi.object().keys({ 
         emailaddress: Joi
             .string()
             .email()

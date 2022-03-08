@@ -20,6 +20,25 @@ async function register({ body }) {
      
 }
 
+async function login({ body }) { 
+
+    try{
+        let { data } = await axios.post(`${url}/login`, body); 
+        return { data } 
+    }
+    catch(errr){ 
+        if(errr.response){
+            let { error } = errr.response.data;
+            return { error }
+        }
+        else{
+            return { error: errr.message }
+        }
+    }
+     
+}
+
 export { 
-    register 
+    register, 
+    login 
 };

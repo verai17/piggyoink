@@ -15,4 +15,17 @@ module.exports = {
         },
     }, 
 
+    register: {
+      method: 'post',
+      path: '/account/login', 
+      requireAuth: false,
+      async resolver(__, input, ctx) {
+        console.log(
+          `GET /account/login param:emailaddress=${input.emailaddress}"`
+        )
+        const data = await service.login(__, input, ctx)
+        return data 
+      },
+  },
+
 }
