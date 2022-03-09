@@ -4,6 +4,14 @@ This project is built in React JS for frontend, Node JS for backend, Sequelize O
 
 ## Setup
 
+#### Postgres Database
+
+For Postgres setup locally, reference [here](https://www.codecademy.com/article/installing-and-using-postgresql-locally).
+
+For Postgres GUI Application, install [pgAdmin](https://www.pgadmin.org/download/).
+
+Once successfully setup, create a new database `piggyoink` under public schema. 
+
 #### React
 
 1. Clone the project.
