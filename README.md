@@ -17,6 +17,10 @@ git clone https://github.com/verai17/piggyoink.git
 cd piggyoink
 npm install
 ```
+3. Create `.env` file.
+```
+cp .env.sample .env
+```
  
  #### Node JS
  1. Install the dependencies. 
@@ -24,12 +28,15 @@ npm install
  cd backend
  npm install
  ```
- 2. Run migration for the database schema.
+ 2. Create `.env` file.
+```
+cp .env.sample .env
+```
+ 3. Run migration for the database schema.
  ```
  npx sequelize-cli db:migrate
- 
  ```
- 3. Run seed for static data used in the project. 
+ 4. Run seed for static data used in the project. 
  ```
  npx sequelize-cli db:seed:all
  ```
@@ -52,5 +59,12 @@ http://localhost:3000/
 
 ## Todo
 
-1. Cookies checking on routes
+1. BE - Transactions
+2. FE - Transactions
+3. BE - Get All Saving Category
+4. BE - Get All Expense Category
+5. BE - Save Saving Category
+6. BE - Save Expense Category
+7. FE - Save Saving Category
+8. FE - Save Expense Category
 ```
