@@ -58,13 +58,7 @@ http://localhost:3000/
 ```
 
 ## Todo
-
-1. BE - Transactions
-2. FE - Transactions
-3. BE - Get All Saving Category
-4. BE - Get All Expense Category
-5. BE - Save Saving Category
-6. BE - Save Expense Category
-7. FE - Save Saving Category
-8. FE - Save Expense Category
-```
+ 
+1. FE - Transactions  
+2. FE - Save Saving Category
+3. FE - Save Expense Category
