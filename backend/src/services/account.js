@@ -38,7 +38,7 @@ async function register(__, input, ctx) {
         },{ transaction: t });
     
         let wallet = await user_wallet.create({
-            userid: newUser.id,
+            userid: user.id,
             currentbalance: 0
         }, { transaction: t });
     
