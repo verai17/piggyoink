@@ -43,11 +43,12 @@ function WalletSavings(props) {
                             className="form-control" 
                             name="role"     
                         >
-                            <option value="">Select Category</option>
-                            <option value="cash">Cash</option>
-                            <option value="salary">Salary</option>
-                            <option value="business">Business</option>
-                            <option value="others">Others</option>
+                            <option key={0} value="">Select Category</option>
+                            { 
+                                props.categoryList.map(({ id, name }) => 
+                                    <option key={id} value={name}>{name}</option>
+                                )
+                            } 
                         </select> 
                     </InputGroup>  
                     
@@ -60,7 +61,7 @@ function WalletSavings(props) {
                 </Button>
                 <br/>
                 <Button variant="primary" type="button" className="mdlfooterbtn mdlsubmitbtn"
-                    onClick={props.handleExpenseShow}>
+                    onClick={props.handleSubmit}>
                     SUBMIT
                 </Button>
             </Modal.Footer> 

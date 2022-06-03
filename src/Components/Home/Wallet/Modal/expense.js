@@ -37,11 +37,12 @@ function WalletExpense(props) {
                             className="form-control" 
                             name="role"     
                         >
-                            <option value="">Select Category</option>
-                            <option value="rent">Rent</option>
-                            <option value="transportation">Transportation</option>
-                            <option value="food">Food</option>
-                            <option value="groceries">Groceries</option>
+                            <option key={0} value="">Select Category</option>
+                            { 
+                                props.categoryList.map(({ id, name }) => 
+                                    <option key={id} value={name}>{name}</option>
+                                )
+                            }
                         </select> 
                     </InputGroup>  
                     
@@ -54,7 +55,7 @@ function WalletExpense(props) {
                 </Button>
                 <br/>
                 <Button variant="primary" type="button" className="mdlfooterbtn mdlsubmitbtn"
-                    onClick={props.handleExpenseShow}>
+                    onClick={props.handleSubmit}>
                     SUBMIT
                 </Button>
             </Modal.Footer> 

@@ -20,7 +20,7 @@ module.exports = {
       path: '/expenses/save',  
       async resolver(__, input, ctx) { 
         console.log(
-          `GET /expenses/save email:${ctx.req.user.email} id:${ctx.req.user.id}
+          `POST /expenses/save email:${ctx.req.user.email} id:${ctx.req.user.id}
                               param:category_name=${input.category_name}&amount=${input.amount}`
         )
         const data = await service.save(__, input, ctx)

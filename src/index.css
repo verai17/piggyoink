@@ -36,8 +36,7 @@ input, label{
   /* .container, .container-sm, .container-md, .container-lg{ */
   background: #FDFAFA; 
   position: relative; /* needed for footer positioning*/
-  height: auto !important; /* real browsers */
-  min-height: 690px !important; /* real browsers */
+  height: 900px !important; /* real browsers */
   max-width: 500px !important;
 }
 
