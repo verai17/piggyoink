@@ -38,12 +38,12 @@ function Home() {
                 <h2>PiggyOink!</h2>
             </Navbar.Brand>
             <Nav className="ml-auto">  
-                <NavDropdown title={navDropdownTitle} eventKey={3} id="basic-nav-dropdown">
-                    <NavDropdown.Item eventKey={3.1}>ACCOUNT</NavDropdown.Item>
+                <NavDropdown title={navDropdownTitle} eventkey={3} id="basic-nav-dropdown">
+                    <NavDropdown.Item eventkey={3.1}>ACCOUNT</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item eventKey={3.2}>CHANGE PASSWORD</NavDropdown.Item>
+                    <NavDropdown.Item eventkey={3.2}>CHANGE PASSWORD</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item eventKey={3.2} onClick={handleLogout}>LOGOUT</NavDropdown.Item>
+                    <NavDropdown.Item eventkey={3.2} onClick={handleLogout}>LOGOUT</NavDropdown.Item>
                 </NavDropdown>
             </Nav>
     
