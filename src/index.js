@@ -1,6 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from "react-router-dom";
+import ReactDOM from 'react-dom'; 
+
+import { CookiesProvider } from 'react-cookie';
 
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,9 +10,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <BrowserRouter>
+  <CookiesProvider>
     <App />
-  </BrowserRouter>,
+  </CookiesProvider>,
   document.getElementById('root')
 );
 

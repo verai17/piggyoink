@@ -24,12 +24,10 @@ function Login() {
     const [cookies, setCookie] = useCookies(['token'],['user']);
     let history = useHistory();
 
-    useEffect(() => {
-        if (cookies) {
-            if (cookies.token) {
-                history.push('/home');
-            } 
-        } 
+    useEffect(() => { 
+        if (cookies.token) { 
+            history.push('/home');
+        }  
     }, [history, cookies]);
   
     const routeChange = (location) =>{ 

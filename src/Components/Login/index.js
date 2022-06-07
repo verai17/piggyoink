@@ -19,12 +19,10 @@ function Login() {
     const [values, setValues] = useState(initialValue); 
     const [cookies, setCookie] = useCookies(['token'],['user']);
     let history = useHistory();
-
+ 
     useEffect(() => {
-        if (cookies) {
-            if (cookies.token) {
-                history.push('/home');
-            } 
+        if (cookies.token) {
+            history.push('/home');
         } 
     }, [history, cookies]);
 

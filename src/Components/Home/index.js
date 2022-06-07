@@ -13,16 +13,21 @@ import { Container, Row } from "react-bootstrap";
 
 function Home() {
 
-    const [cookies, setCookie] = useCookies(['user']); 
+    const [cookies, setCookie, removeCookie] = useCookies(['token','wallet','user']); 
     let history = useHistory();
  
-    useEffect(() => {
-        if (cookies) {
-            if (!cookies.token) {
-                history.push('/');
-            } 
+    console.log('HOME - cookies: ', cookies);
+    useEffect(() => { 
+
+        console.log('HOME - cookies: ', cookies);
+        if (!cookies.token) { 
+            removeCookie('token', { path: '/' });
+            removeCookie('user', { path: '/' });
+            removeCookie('wallet', { path: '/' });
+
+            history.push('/'); 
         } 
-    }, [history, cookies]);
+    }, [history, cookies, removeCookie]);
 
     const routeChange = (location) =>{ 
         history.push(location); 
@@ -30,20 +35,26 @@ function Home() {
  
 
     return(
-        <Container> 
+        <>
+        { !cookies.token ? 
+            ""
+          : 
+            <Container> 
 
-            {/* MENU BAR */}
-            <Row><Menu /></Row> 
+                {/* MENU BAR */}
+                <Row><Menu /></Row> 
 
-            {/* WELCOME LABEL */}
-            <Row><h4 className="welcomelbl">Welcome, <span>{cookies.user.firstname.toUpperCase()} {cookies.user.lastname.toUpperCase()}</span> &#128075;</h4></Row> 
+                {/* WELCOME LABEL */}
+                <Row><h4 className="welcomelbl">Welcome, <span>{cookies.user.firstname.toUpperCase()} {cookies.user.lastname.toUpperCase()}</span> &#128075;</h4></Row> 
 
-            {/* WALLET */}
-            <Row><Wallet /></Row>
+                {/* WALLET */}
+                <Row><Wallet /></Row>
 
-            {/* TRANSACTION */}
-            <Row><Transaction /></Row>
-        </Container>
+                {/* TRANSACTION */}
+                <Row><Transaction /></Row>
+            </Container> 
+        }
+        </>  
     );
     
 }
