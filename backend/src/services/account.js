@@ -138,11 +138,9 @@ async function get_wallet(__, input, ctx) {
     const userWallet = await user_wallet.findOne({
         where: { userid: ctx.req.user.id },
     });
-
-    console.log(`userWallet: ${JSON.stringify(userWallet)}`);
-  
+ 
     return { 
-        message: "message", 
+        wallet: userWallet
     }
 }
 

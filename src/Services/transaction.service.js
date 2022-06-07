@@ -50,7 +50,7 @@ async function getSaveCategory(token) {
      
 }
 
-async function saveExpenseTransaction(token, { body }) { 
+async function submitSavingsTransaction(token,  body) { 
 
     try{ 
         let config = {
@@ -59,7 +59,7 @@ async function saveExpenseTransaction(token, { body }) {
             } 
         };
  
-        let { data } = await axios.post(`${url}/login`, body, config); 
+        let { data } = await axios.post(`${url}/savings/save`, body, config); 
         return { data } 
     }
     catch(errr){ 
@@ -77,5 +77,5 @@ async function saveExpenseTransaction(token, { body }) {
 export { 
     getExpenseCategory, 
     getSaveCategory,
-    saveExpenseTransaction 
+    submitSavingsTransaction 
 };

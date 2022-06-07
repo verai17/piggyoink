@@ -15,10 +15,8 @@ function Home() {
 
     const [cookies, setCookie, removeCookie] = useCookies(['token','wallet','user']); 
     let history = useHistory();
- 
-    console.log('HOME - cookies: ', cookies);
-    useEffect(() => { 
-
+  
+    useEffect(() => {  
         console.log('HOME - cookies: ', cookies);
         if (!cookies.token) { 
             removeCookie('token', { path: '/' });

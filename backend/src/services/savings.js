@@ -3,20 +3,15 @@ const jwt = require('../utils/passport-jwt');
 const validator = require('../validators/transaction.validator');  
 const { sequelize, savings_category, transactions } = require('../models');
   
-async function get_category(__, input, ctx) { 
- 
-    //check if email address exist
-    const category = await savings_category.findAll();
-
-    console.log(`category: ${JSON.stringify(category)}`);
-  
+async function get_category(__, input, ctx) {  
+    const category = await savings_category.findAll(); 
     return {  category  }
 }
 
 async function save(__, input, ctx) { 
 
     const value = await validator.transactionValidator("transaction",{
-        category_name: input.category_name,
+        category_name: input.category,
         amount: input.amount, 
     })
    

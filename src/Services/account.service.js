@@ -38,7 +38,32 @@ async function login({ body }) {
      
 }
 
+async function getUserWallet(token) { 
+
+    try{
+        let config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            } 
+        };
+  
+        let { data } = await axios.get(`${url}/wallet`,config); 
+        return { data } 
+    }
+    catch(errr){ 
+        if(errr.response){
+            let { error } = errr.response.data;
+            return { error }
+        }
+        else{
+            return { error: errr.message }
+        }
+    }
+     
+}
+
 export { 
     register, 
-    login 
+    login,
+    getUserWallet 
 };

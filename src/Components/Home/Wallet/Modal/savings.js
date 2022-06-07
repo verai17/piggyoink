@@ -1,17 +1,37 @@
 import React from "react";    
-import { useHistory } from "react-router-dom";
+import { useState } from 'react'; 
 
 import "./index.css";
 import { Modal, Button, Form, InputGroup } from "react-bootstrap"; 
 import { default as PiggyFront } from '../../../../img/piggyfront.svg';  
  
+const initialValue = { 
+    amount: '', 
+    category: '',
+}
 
 function WalletSavings(props) {
 
-    let history = useHistory();
+    const [values, setValues] = useState(initialValue);  
+ 
+   
+    const handleChange = (event) => {
+        setValues({
+          ...values,
+          [event.target.name]: event.target.value
+        })
+    }
 
-    const routeChange = (location) =>{ 
-        history.push(location); 
+    const validateSubmit = (event) => {
+
+        if(values.amount === '' || values.amount == null || values.amount === 0 || 
+           values.category === '' || values.category == null){
+            alert('Invalid data. Please check.');
+        } 
+        else{ 
+            props.handleSubmit(values);
+            setValues(initialValue);
+        }
     }
  
     return( 
@@ -29,7 +49,13 @@ function WalletSavings(props) {
             <Modal.Body>
                 <Form>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Control type="number" placeholder="Amount" />
+                        <Form.Control 
+                            type="number" 
+                            name="amount" 
+                            placeholder="Amount" 
+                            value={values.amount}
+                            onChange={handleChange} 
+                        />
                     </Form.Group>
 
                     {/* <Form.Group className="mb-3" >
@@ -40,8 +66,10 @@ function WalletSavings(props) {
 
                     <InputGroup className="mb-3"> 
                         <select 
-                            className="form-control" 
-                            name="role"     
+                            className="form-control"  
+                            name="category"  
+                            value={values.category}
+                            onChange={handleChange} 
                         >
                             <option key={0} value="">Select Category</option>
                             { 
@@ -61,7 +89,7 @@ function WalletSavings(props) {
                 </Button>
                 <br/>
                 <Button variant="primary" type="button" className="mdlfooterbtn mdlsubmitbtn"
-                    onClick={props.handleSubmit}>
+                    onClick={validateSubmit}>
                     SUBMIT
                 </Button>
             </Modal.Footer> 
