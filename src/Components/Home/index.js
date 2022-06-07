@@ -17,7 +17,7 @@ function Home() {
     let history = useHistory();
   
     useEffect(() => {  
-        console.log('HOME - cookies: ', cookies);
+ 
         if (!cookies.token) { 
             removeCookie('token', { path: '/' });
             removeCookie('user', { path: '/' });
@@ -26,12 +26,7 @@ function Home() {
             history.push('/'); 
         } 
     }, [history, cookies, removeCookie]);
-
-    const routeChange = (location) =>{ 
-        history.push(location); 
-    }
  
-
     return(
         <>
         { !cookies.token ? 

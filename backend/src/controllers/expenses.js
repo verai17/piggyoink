@@ -21,7 +21,7 @@ module.exports = {
       async resolver(__, input, ctx) { 
         console.log(
           `POST /expenses/save email:${ctx.req.user.email} id:${ctx.req.user.id}
-                              param:category_name=${input.category_name}&amount=${input.amount}`
+                              param:category_name=${input.category}&amount=${input.amount}`
         )
         const data = await service.save(__, input, ctx)
         return data

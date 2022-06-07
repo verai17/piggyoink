@@ -57,13 +57,7 @@ function WalletSavings(props) {
                             onChange={handleChange} 
                         />
                     </Form.Group>
-
-                    {/* <Form.Group className="mb-3" >
-                        <Form.Select aria-label="Default select example">
-                            
-                        </Form.Select>
-                    </Form.Group> */}
-
+ 
                     <InputGroup className="mb-3"> 
                         <select 
                             className="form-control"  

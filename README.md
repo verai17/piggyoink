@@ -67,6 +67,7 @@ http://localhost:3000/
 
 ## Todo
  
-1. FE - Transactions  
-2. FE - Save Saving Category
-3. FE - Save Expense Category
+1. FE - Wallet [done]
+2. FE - Transactions  
+3. FE - Save Saving Category [done]
+4. FE - Save Expense Category [done]

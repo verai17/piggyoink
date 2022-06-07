@@ -74,8 +74,33 @@ async function submitSavingsTransaction(token,  body) {
      
 }
 
+async function submitExpenseTransaction(token,  body) { 
+
+    try{ 
+        let config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            } 
+        };
+ 
+        let { data } = await axios.post(`${url}/expenses/save`, body, config); 
+        return { data } 
+    }
+    catch(errr){ 
+        if(errr.response){
+            let { error } = errr.response.data;
+            return { error }
+        }
+        else{
+            return { error: errr.message }
+        }
+    }
+     
+}
+
 export { 
     getExpenseCategory, 
     getSaveCategory,
-    submitSavingsTransaction 
+    submitSavingsTransaction,
+    submitExpenseTransaction 
 };

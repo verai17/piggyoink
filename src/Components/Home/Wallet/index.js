@@ -1,11 +1,12 @@
-import React, { useState }from "react";     
+import React, { useState }from "react"; 
 import { useCookies } from 'react-cookie';
 import { useHistory } from "react-router-dom";
  
 import { 
     getSaveCategory, 
     getExpenseCategory, 
-    submitSavingsTransaction
+    submitSavingsTransaction,
+    submitExpenseTransaction
 } from '../../../Services/transaction.service';
 import { 
     getUserWallet,  
@@ -28,18 +29,17 @@ function Wallet() {
     const [saveCategory, setSaveCategory] = useState([]);
     const [expenseCategory, setExpenseCategory] = useState([]); 
     const [cookies, setCookie, removeCookie] = useCookies(['token','wallet']); 
-    const [wallet, setWallet] = useState((!cookies.wallet.currentbalance ? 0 : cookies.wallet.currentbalance )); 
-        let history = useHistory();
-
-     ////////////////////////// EVENTS HERE
+    const [wallet, setWallet] = useState((!cookies.wallet.currentbalance ? 0 : cookies.wallet.currentbalance ));
+    let history = useHistory();
+ 
+    ////////////////////////// EVENTS HERE
 
     const handleClose = () => setShowOptionModal(false); 
     const handleSavingClose = () => setShowSavingModal(false);
     const handleExpenseClose = () => setShowExpenseModal(false);
 
     const handleShow = () => setShowOptionModal(true);
-    const handleSavingShow = async () => {
-
+    const handleSavingShow = async () => { 
         const { data } = await getSaveCategory(cookies.token); 
         setSaveCategory(data.category);
 
@@ -57,6 +57,7 @@ function Wallet() {
 
     const handleSaveSubmit = async (values) =>{  
         setShowSavingModal(false);
+
         const { error } = await submitSavingsTransaction(cookies.token, values); 
          
         if(typeof error !== "undefined"){  handleError(error);   }
@@ -73,15 +74,26 @@ function Wallet() {
         
     }
 
-    const handleExpenseSubmit = (values) =>{ 
-    //     //submit request
-    //     //get wallet request
-    console.log('handleExpenseSubmit - values: ', values);
+    const handleExpenseSubmit = async (values) =>{  
         setShowExpenseModal(false);
+  
+        const { error } = await submitExpenseTransaction(cookies.token, values); 
+          
+        if(typeof error !== "undefined"){  handleError(error);   }
+        else{
+            const { data, error } = await getUserWallet(cookies.token); 
+ 
+            if(typeof error !== "undefined"){   handleError(error);   }
+            else{ 
+                setCookie('wallet', data.wallet, { path: '/' });
+                setWallet(data.wallet.currentbalance); 
+            }
+            
+        }
     }
 
      ////////////////////////// OTHER FUNCTIONS HERE
-
+ 
     const handleError = (error) =>{
 
         if(error === "ERROR_INVALID_TOKEN"){   
@@ -94,7 +106,7 @@ function Wallet() {
         else if(typeof error !== "undefined"){   alert(`Error [${error}]. Try again.`);   }
  
     }
-  
+ 
     return(
         <>
         <div className="walletbox" onClick={(e)=>handleShow()}>
