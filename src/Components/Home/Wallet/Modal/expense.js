@@ -1,5 +1,4 @@
-import React from "react";    
-import { useState } from 'react'; 
+import React, { useState, useEffect } from "react";   
 
 import "./index.css";
 import { Modal, Button, Form, InputGroup } from "react-bootstrap"; 
@@ -13,6 +12,13 @@ const initialValue = {
 function WalletExpense(props) {
 
     const [values, setValues] = useState(initialValue);  
+
+    useEffect(() => {   
+        if (props.showModal) { 
+            //reset the modal inputs
+            setValues(initialValue);
+        } 
+    }, [props.showModal]);
   
     const handleChange = (event) => {
         setValues({
@@ -29,7 +35,6 @@ function WalletExpense(props) {
         } 
         else{ 
             props.handleSubmit(values);
-            setValues(initialValue);
         }
     }
  
