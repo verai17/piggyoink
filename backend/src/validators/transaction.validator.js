@@ -1,7 +1,7 @@
 const Joi = require('joi');
 const ValidationError = require('./ValidationError')
 
-exports.transactionValidator = async (schema_name, param) =>{
+exports.requestValidator = async (schema_name, param) =>{
 
     try{ 
         const schema = await getSchema(schema_name);
@@ -23,7 +23,7 @@ async function getSchema(name){
     let schema = null;
 
     switch(name){
-        case "transaction": schema = transaction(); break; 
+        case "saveTransaction": schema = transaction(); break; 
         default: schema = null; break;
     }
  
