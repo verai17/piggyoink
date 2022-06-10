@@ -1,9 +1,5 @@
 version: '3'
-
-networks:
-  pgyk-network:
-    driver: bridge
-
+ 
 services:
   db:
     container_name: pg_piggyoink
@@ -12,6 +8,7 @@ services:
       dockerfile: Dockerfile 
     restart: always
     environment:
+      - TZ=Asia/Singapore
       - POSTGRES_DB=piggyoink
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password0000 
@@ -20,7 +17,10 @@ services:
     ports:
       - 15432:5432
     networks:
-      - pgyk-network
+      - gateway
 
 volumes:
   pgdata:
+
+networks:
+  gateway:
