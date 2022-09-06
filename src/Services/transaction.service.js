@@ -1,106 +1,112 @@
-import axios from 'axios';
- 
+import axios from "axios";
+
 const url = `${process.env.REACT_APP_API_URL}/api`;
 
-async function getExpenseCategory(token) { 
+async function getExpenseCategory(token) {
+  try {
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
-    try{
-        let config = {
-            headers: {
-                Authorization: `Bearer ${token}`
-            } 
-        };
-
-        let { data } = await axios.get(`${url}/expenses/category`, config); 
-        return { data } 
+    let { data } = await axios.get(`${url}/expenses/category`, config);
+    return { data };
+  } catch (errr) {
+    if (errr.response) {
+      let { error } = errr.response.data;
+      return { error };
+    } else {
+      return { error: errr.message };
     }
-    catch(errr){ 
-        if(errr.response){
-            let { error } = errr.response.data;
-            return { error }
-        }
-        else{
-            return { error: errr.message }
-        }
-    }
-     
+  }
 }
 
-async function getSaveCategory(token) { 
+async function getSaveCategory(token) {
+  try {
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
-    try{
-        let config = {
-            headers: {
-                Authorization: `Bearer ${token}`
-            } 
-        };
-  
-        let { data } = await axios.get(`${url}/savings/category`, config); 
-        return { data } 
+    let { data } = await axios.get(`${url}/savings/category`, config);
+    return { data };
+  } catch (errr) {
+    if (errr.response) {
+      let { error } = errr.response.data;
+      return { error };
+    } else {
+      return { error: errr.message };
     }
-    catch(errr){ 
-        if(errr.response){
-            let { error } = errr.response.data;
-            return { error }
-        }
-        else{
-            return { error: errr.message }
-        }
-    }
-     
+  }
 }
 
-async function submitSavingsTransaction(token,  body) { 
+async function getTransactions(token, params) {
+  try {
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      param: params,
+    };
 
-    try{ 
-        let config = {
-            headers: {
-                Authorization: `Bearer ${token}`
-            } 
-        };
- 
-        let { data } = await axios.post(`${url}/savings/save`, body, config); 
-        return { data } 
+    let { data } = await axios.get(`${url}/transactions?`, config);
+    return { data };
+  } catch (errr) {
+    if (errr.response) {
+      let { error } = errr.response.data;
+      return { error };
+    } else {
+      return { error: errr.message };
     }
-    catch(errr){ 
-        if(errr.response){
-            let { error } = errr.response.data;
-            return { error }
-        }
-        else{
-            return { error: errr.message }
-        }
-    }
-     
+  }
 }
 
-async function submitExpenseTransaction(token,  body) { 
+async function submitSavingsTransaction(token, body) {
+  try {
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
-    try{ 
-        let config = {
-            headers: {
-                Authorization: `Bearer ${token}`
-            } 
-        };
- 
-        let { data } = await axios.post(`${url}/expenses/save`, body, config); 
-        return { data } 
+    let { data } = await axios.post(`${url}/savings/save`, body, config);
+    return { data };
+  } catch (errr) {
+    if (errr.response) {
+      let { error } = errr.response.data;
+      return { error };
+    } else {
+      return { error: errr.message };
     }
-    catch(errr){ 
-        if(errr.response){
-            let { error } = errr.response.data;
-            return { error }
-        }
-        else{
-            return { error: errr.message }
-        }
-    }
-     
+  }
 }
 
-export { 
-    getExpenseCategory, 
-    getSaveCategory,
-    submitSavingsTransaction,
-    submitExpenseTransaction 
+async function submitExpenseTransaction(token, body) {
+  try {
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    let { data } = await axios.post(`${url}/expenses/save`, body, config);
+    return { data };
+  } catch (errr) {
+    if (errr.response) {
+      let { error } = errr.response.data;
+      return { error };
+    } else {
+      return { error: errr.message };
+    }
+  }
+}
+
+export {
+  getExpenseCategory,
+  getSaveCategory,
+  getTransactions,
+  submitSavingsTransaction,
+  submitExpenseTransaction,
 };
