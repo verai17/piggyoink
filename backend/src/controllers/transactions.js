@@ -27,7 +27,21 @@ module.exports = {
       },
  
     }, 
-     
+    
+    get_transactions: {
+      method: 'get',
+      path: '/transactions',  
+      async resolver(__, input, ctx) { 
+        console.log(
+          `GET /transactions email:${ctx.req.user.email} id:${ctx.req.user.id}
+                             param:limit=${input.limit}&page=${input.page}`
+        )
+        const data = await service.get_transactions(__, input, ctx)
+        return data 
+      },
+ 
+    },
+
     save_expenses: {
       method: 'post',
       path: '/expenses/save',  

@@ -24,6 +24,7 @@ async function getSchema(name){
 
     switch(name){
         case "saveTransaction": schema = transaction(); break; 
+        case "getTransactions": schema = list_transactions(); break; 
         default: schema = null; break;
     }
  
@@ -39,6 +40,22 @@ function transaction(){
             .number()
             .min(0) 
             .required()
+    });  
+}
+
+function list_transactions(){
+    return Joi.object().keys({
+        limit: Joi
+            .number()
+            .integer()
+            .positive()
+            .allow(null)
+            .default(100),
+        page: Joi
+            .number()
+            .integer()
+            .allow(null)
+            .default(0),
     });  
 }
  

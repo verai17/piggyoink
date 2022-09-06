@@ -8,6 +8,10 @@ module.exports = {
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     dialect: process.env.DB_DIALECT,
+    dialectOptions: {
+      useUTC: false, // for reading from database
+    },
+    timezone: '+08:00', // for writing to database
     logging: false,
   },
   test: {
@@ -16,6 +20,7 @@ module.exports = {
     database: process.env.DB_NAME,
     port: process.env.DB_PORT,
     dialect: process.env.DB_DIALECT, 
+    timezone: process.env.DB_TIMEZONE, 
     logging: false,
   },
   production: {
@@ -24,6 +29,7 @@ module.exports = {
     database: process.env.DB_NAME,
     port: process.env.DB_PORT,
     dialect: process.env.DB_DIALECT,
+    timezone: process.env.DB_TIMEZONE,
     logging: false,
   },
 };
