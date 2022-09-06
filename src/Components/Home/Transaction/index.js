@@ -10,7 +10,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHistory } from "@fortawesome/free-solid-svg-icons";
 
-function Transaction() {
+function Transaction(props) {
   const [transactions, setTransactions] = useState([]);
   const [page, setPage] = useState(0);
   const limit = 5;
@@ -22,11 +22,6 @@ function Transaction() {
       history.push("/home");
     }
   }, [history, cookies]);
-
-  useEffect(() => {
-    //get transactions list
-    fetchTransactions();
-  }, []);
 
   const fetchTransactions = async () => {
     const queryParam = {
@@ -81,14 +76,19 @@ function Transaction() {
     setTransactions(newtxnarr);
   };
 
+  if (props.isTRNRefresh) {
+    //this used during adding savings / expense transactions
+    fetchTransactions().then(() => props.refreshTransaction(false));
+  }
+
   return (
     <Container className="transactionbox">
       <Row>
         <h3 className="txnlbl">
           Transactions{" "}
-          <span>
+          {/* <span>
             <FontAwesomeIcon icon={faHistory} />
-          </span>
+          </span> */}
         </h3>
       </Row>
 
